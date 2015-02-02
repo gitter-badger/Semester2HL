@@ -6,7 +6,8 @@ import java.text.DecimalFormat;
  */
 public class Main {
 	/**
-	 * 
+	 * Hautpfunktion 
+	 * Autobestand und ausgabe der Autos 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -41,29 +42,34 @@ public class Main {
 		System.out.println("Anteil an Diesel: "+fuelCalculation(autobestand, 0, 0)+"%");
 		System.out.println("Anteil an Elektroautos: "+electroCalculation(autobestand, 0, 0)+"%");
 		System.out.println("Erlös mit nachlass: "+f.format(discountPriceCalculation(autobestand, 0, 0))+"€");
+		for (Auto a : autobestand) {
+			System.out.println(a);
+		}
 		
 	}
 	/**
-	 * 
-	 * @param xs
-	 * @return
+	 * Brechnet den gesamt Wert der Autos 
+	 * @param xs Die Autoliste 
+	 * @param i Hilfszhler um die liste durchzugehen 
+	 * @param volume Der gesamte Wert der Autos 
+	 * @return Den gesamtbetrag der Autos in € 
 	 */
 	public static double priceCalculation(Auto[]xs,int i,double volume) {
 		if(i==xs.length)return volume;
-		volume +=xs[i].preis;
+		volume +=xs[i].getPreis();
 		i++;
 		return priceCalculation(xs, i, volume);
 	}
 	/**
-	 * 
-	 * @param xs
-	 * @param i
-	 * @param percentage
-	 * @return
+	 * Anteil der Unfallwagen in %
+	 * @param xs Die Autoliste 
+	 * @param i Hifszähler für die autoliste
+	 * @param percentage Der Anteil der Unfallwagen 
+	 * @return Den Anteil der Unfallwagen in % 
 	 */
 	public static float damageCalculation(Auto[]xs,int i,float percentage) {
 		if(i==xs.length) return (float) (percentage/(i/100.00));
-		if(xs[i].unfallwagen)
+		if(xs[i].isUnfallwagen())
 		{
 			percentage++;
 		}
@@ -71,15 +77,15 @@ public class Main {
 		return damageCalculation(xs, i, percentage);
 	}
 	/**
-	 * 
-	 * @param xs
-	 * @param i
-	 * @param percentage
-	 * @return
+	 * Berrechnet den Anteil der Autos die Diesel als Kraftstoff haben 
+	 * @param xs Die Autoliste 
+	 * @param i Hifszähler für die autoliste
+	 * @param percentage Anteil der Autos die Diesel als Kraftstoff haben 
+	 * @return Anteil der Autos die Diesel als Kraftstoff haben 
 	 */
 	public static float fuelCalculation(Auto[]xs,int i,float percentage) {
 		if(i==xs.length)return (float) (percentage/(i/100.00));
-		if(xs[i].kraftstoff.equals("Diesel"))
+		if(xs[i].getKraftstoff().equals("Diesel"))
 		{
 			percentage++;
 		}
@@ -87,33 +93,33 @@ public class Main {
 		return fuelCalculation(xs, i, percentage);
 	}
 	/**
-	 * 
-	 * @param xs
-	 * @param i
-	 * @param percentage
-	 * @return
+	 * Berrechnet den Anteil an Elektroautos
+	 * @param xs Die Autoliste 
+	 * @param i Hifszähler für die autoliste
+	 * @param percentage Anteil der Autos die Elektroauto sind 
+	 * @return Anteil der Autos die Elektroauto sind 
 	 */
 	public static float electroCalculation(Auto[]xs,int i,float percentage) {
 		if (i==xs.length) return (float)(percentage/(i/100.00));
-		if (xs[i].kraftstoff.equals("Diesel")) {
+		if (xs[i].getKraftstoff().equals("Diesel")) {
 				percentage++;
 		}
 		i++;
 		return electroCalculation(xs, i, percentage);
 	}
 	/**
-	 * 
-	 * @param xs
-	 * @param i
-	 * @param volume
-	 * @return
+	 * Berrechnet den Erloes mit Nachlass
+	 * @param xs Die Autoliste 
+	 * @param i Hifszähler für die autoliste
+	 * @param volume Der Erloes mit Nachlass
+	 * @return Der Erloes mit Nachlass
 	 */
 	public static double discountPriceCalculation(Auto[]xs,int i,double volume) {
 		if(i==xs.length)return volume;
-		if(xs[i].unfallwagen){
-			volume+=75*(xs[i].preis/100);
+		if(xs[i].isUnfallwagen()){
+			volume+=75*(xs[i].getPreis()/100);
 		}else{
-			volume+=90*(xs[i].preis/100);
+			volume+=90*(xs[i].getPreis()/100);
 		}
 		i++;
 		return discountPriceCalculation(xs, i, volume);

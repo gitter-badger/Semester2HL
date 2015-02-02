@@ -63,7 +63,7 @@ public class Auto {
 	 * Getter Methode
 	 * @return Den Unfalltyp
 	 */
-	public boolean getUnfallwagen() {
+	public boolean isUnfallwagen() {
 		return this.unfallwagen;
 	}
 	/**
