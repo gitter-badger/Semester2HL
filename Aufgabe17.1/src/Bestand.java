@@ -30,7 +30,7 @@ public class Bestand {
 	 * @return true oder false ob entnehmen erfolgreich war 
 	 */
 	public  boolean entnehmen(Auto auto) {
-		return true
+		return true;
 	}
 	
 	/**
