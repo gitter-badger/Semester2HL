@@ -5,6 +5,8 @@
  */
 public class Bestand {
 	
+	
+
 	/**
 	 * Prüft ob ein Auto Vorhanden ist und liefert boolean Autos müssen nur referenzgleich sein 
 	 * @param auto Das auto das geprüft wird ob es vorhanden ist 
