@@ -16,6 +16,7 @@ public class Auto  {
 
 	/**
 	 * Konstruktur für Klasse Auto
+	 * Ruft für jedes attribut die set-Mehtode auf um die werte zu speichern 
 	 * 
 	 * @param hersteller
 	 *            Der Hersteller des Autos
