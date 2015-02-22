@@ -50,6 +50,7 @@ public class Figur {
 		return figuren;
 	}
 	
+	
 	/**
 	 * Sortiert die Liste an Figuren mit einem Array ueber Objekt von klein nach gross bei z
 	 */
