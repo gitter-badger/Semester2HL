@@ -8,7 +8,7 @@ public abstract class FigMZLA extends Figur{
 	protected int A;
 	protected int B;
 	protected String figurenTyp;
-	protected static  double gesamtFlaeche;
+	private static  double gesamtFlaeche;
 	
 	
 	/**

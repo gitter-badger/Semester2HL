@@ -2,7 +2,8 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
- * Enthaelt die Figuren die erstellt wurden 
+ * Enthaelt die Figuren die erstellt wurden
+ * 
  * @author Sven Marquardt
  *
  */
@@ -47,9 +48,9 @@ public class Figur {
 	}
 
 	/**
-	 * Wird in dieser Aufgabe nicht benoetigt 
-	 * @deprecated
-	 * Gibt die Liste an Figuren
+	 * Wird in dieser Aufgabe nicht benoetigt
+	 * 
+	 * @deprecated Gibt die Liste an Figuren
 	 * 
 	 * @return Die Liste an Figuren
 	 */
@@ -57,20 +58,21 @@ public class Figur {
 		bubblesort();
 		return figuren;
 	}
-	
+
 	/**
-	 * Gibt aus der Liste eine Figur zurueck um die toString mehtode nur einmal durchzulaufen 
+	 * Gibt aus der Liste eine Figur zurueck um die toString mehtode nur einmal
+	 * durchzulaufen
+	 * 
 	 * @return Eine Figur aus der Liste figuren.
 	 */
 	public static Figur getGesamt() {
 		filterZ(0, 50, figuren);
 		return figuren.get(0);
 	}
-	
 
 	/**
 	 * Sortiert die Liste an Figuren mit einem Array ueber Objekt von klein nach
-	 * gross bei z
+	 * gross bei {@code Z}
 	 */
 	public static void bubblesort() {
 		Figur[] figur = figuren.toArray(new Figur[0]);
@@ -122,7 +124,5 @@ public class Figur {
 		}
 		return list;
 	}
-	
-	
 
 }
