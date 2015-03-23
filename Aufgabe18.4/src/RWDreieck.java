@@ -28,5 +28,8 @@ public class RWDreieck extends FigMZLA{
 		return (A*B)/2;
 	}
 	
+	/*
+	 * Eine änderung im System :D 
+	 */
 	
 }
