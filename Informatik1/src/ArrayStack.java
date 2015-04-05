@@ -8,8 +8,8 @@ public class ArrayStack<E> implements Stack<E> {
 	private int top;
 	
 	@SuppressWarnings("unchecked")
-	public ArrayStack() {
-		array = (E[]) new Object[10];
+	public ArrayStack(int size) {
+		array = (E[]) new Object[size];
 		top = -1;
 	}
 
@@ -22,8 +22,9 @@ public class ArrayStack<E> implements Stack<E> {
 		
 	}
 	
-	/*
-	 * 
+	/**
+	 * Prueft ob der Stack voll ist 
+	 * @return Liefert {@code true} wenn der Stack voll ist, liefert {@code false} wenn nicht
 	 */
 	public boolean istVoll() {
 		return top+1==array.length;
@@ -34,7 +35,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 * @see Stack#push(java.lang.Object)
 	 */
 	public void push(E e) throws StackFehler {
-		if(istVoll()) throw new StackFehler("Stack ist voll");
+		if(istVoll()) throw new StackFehler("ArrayStack ist voll");
 		array[++top]=e;
 	}
 
@@ -43,7 +44,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 * @see Stack#pop()
 	 */
 	public void pop() throws StackFehler {
-		if(istLeer()) throw new StackFehler("Stack ist leer");
+		if(istLeer()) throw new StackFehler("ArrayStack ist leer");
 		array[top--]=null;		
 	}
 
@@ -52,7 +53,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 * @see Stack#top()
 	 */
 	public E top() throws StackFehler {
-		if(istLeer()) throw new StackFehler("Stack ist leer");
+		if(istLeer()) throw new StackFehler("ArrayStack ist leer");
 		return array[top];
 	}
 
@@ -65,5 +66,7 @@ public class ArrayStack<E> implements Stack<E> {
 		pop();
 		return value;
 	}
+
+
 	
 }
