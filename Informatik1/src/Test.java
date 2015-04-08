@@ -8,27 +8,46 @@ public class Test {
 	@org.junit.Test
 	public void testArrayStack() {
 		Scanner in = new Scanner(System.in);
-		String input;
-		ArrayStack<String> string = new ArrayStack<String>(10);
+		int input;
+		//ArrayStack<Integer> string = new ArrayStack<Integer>(10);
+		ListStack<Integer> string = new ListStack<Integer>();
 		assertThat(true, is(equalTo(string.istLeer())));
+		//Priefen auf leer um fehler zu provozieren
 		try {
+				assertThat(true, is(equalTo(string.istLeer())));
 				string.pop();
 				fail("pop on empty stack should throw StackFehler(Leerer Stack)");
 		} catch (StackFehler e) {
-			System.err.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		System.out.println("Eingabe:");
-		do{
-			input = in.next();
-			string.push(input);
-			assertThat(input, is(equalTo(string.top())));
-		}while(!(string.istVoll()));
-		try{
-			string.push("Noch");
+		string.push(2);
+		assertThat(2, is(equalTo(string.top())));
+		System.out.println(string.top());
+		string.push(3);
+		assertThat(3, is(equalTo(string.top())));
+		System.out.println(string.top());
+		string.push(4);
+		System.out.println(string.top());
+		string.push(5);
+		System.out.println(string.top());
+		string.push(6);
+		System.out.println(string.top());
+		string.push(7);
+		System.out.println(string.top());
+		string.push(8);
+		System.out.println(string.top());
+		string.push(9);
+		System.out.println(string.top());
+		string.push(10);
+		System.out.println(string.top());
+		//Try and catch fuer ArrayStack um das voll sein zu simulieren 
+		/*try{
+			string.push(2);
 			fail("push on full stack should throw an StackFehler(Stack ist voll)");
 		}catch(StackFehler e){
 			System.out.println(e.getMessage());
-		}
+		}*/
 		System.out.println("Ausgabe:");
 		do{
 			System.out.println(string.poptop());
@@ -40,34 +59,25 @@ public class Test {
 		} catch (StackFehler e) {
 			System.out.println(e.getMessage());
 		}
-	}
-	
-	@org.junit.Test
-	public void testListStack() {
-		Scanner in = new Scanner(System.in);
-		String input;
-		ListStack<String> string = new ListStack<String>();
+		
+		//Multipop Test
+		string.push(2);
+		assertThat(2, is(equalTo(string.top())));
+		string.push(3);
+		assertThat(3, is(equalTo(string.top())));
+		string.push(4);
+		string.multiPop(2);
+		assertThat(2, is(equalTo(string.top())));
 		try {
-			string.poptop();
+			string.multiPop(2);
 			fail("pop on empty stack should throw StackFehler(Leerer Stack)");
-			
 		} catch (StackFehler e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println("Eingabe:");
-		do {
-			input=in.nextLine();
-			string.push(input);
-			assertThat(input,is(equalTo(string.top())));
-		} while (!(input.isEmpty()));
-		System.out.println("Ausgabe:");
-		
-		while(!(string.istLeer())){
-			System.out.println(string.poptop());
-		}
 		
 		
-
+		
 	}
+
 
 }

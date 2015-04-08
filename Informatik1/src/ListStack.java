@@ -26,6 +26,7 @@ class StackFehler extends RuntimeException{
 	}
 	
 	/**
+	 * 
 	 * Liefert eine fehler Nachricht 
 	 */
 	public String getMessage() {
@@ -33,10 +34,10 @@ class StackFehler extends RuntimeException{
 	}
 }
 /**
- * 
- * @author eiamnancken
+ * Erstellt eine ListStack 
+ * @author Sven Marquardt
  *
- * @param <E>
+ * @param <E> dateityp des ListStacks
  */
 public class ListStack<E> implements Stack<E> {
 	
@@ -70,10 +71,20 @@ public class ListStack<E> implements Stack<E> {
 	}
 
 
-	public E poptop() {
+	public E poptop() throws StackFehler {
 		E value = top();
 		pop();
 		return value;
+	}
+
+
+	
+	public void multiPop(int e) throws StackFehler {
+		for(int i=0;i<e;i++){
+			if(istLeer()) throw new StackFehler("ListStack ist leer");
+			pop();
+		}
+		
 	}
 
 	

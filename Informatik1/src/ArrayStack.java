@@ -4,7 +4,11 @@
  */
 public class ArrayStack<E> implements Stack<E> {
 	
-	private E[] array;
+	
+	/**
+	 * 
+	 */
+	private E[] array; 
 	private int top;
 	
 	@SuppressWarnings("unchecked")
@@ -61,11 +65,21 @@ public class ArrayStack<E> implements Stack<E> {
 	 * (non-Javadoc)
 	 * @see Stack#poptop()
 	 */
-	public E poptop() {
+	public E poptop()throws StackFehler {
 		E value = top();
 		pop();
 		return value;
 	}
+	
+	
+	public void multiPop(int e) throws StackFehler {
+		for(int i =0;i<e;i++){
+			if(istLeer()) throw new StackFehler("ArrayStack ist leer");
+			pop();
+		}
+		
+	}
+	
 
 
 	

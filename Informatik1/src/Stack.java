@@ -26,5 +26,10 @@ public interface Stack<E> {
 	 * @return Das oberste Element des Stacks {@code E} 
 	 */
 	E poptop();
+	/**
+	 * Fürht eine mehrfaches pop aus 
+	 * @param e Definiert wie oft pop angewendet wird
+	 */
+	void multiPop(int e);
 
 }
