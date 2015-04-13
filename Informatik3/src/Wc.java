@@ -9,7 +9,7 @@ public class Wc {
 		do{
 			t= scanner.next();
 			words.add(t);
-		}while(scanner.hasNext());
+		}while(!(t.equals("\n")));
 		
 		System.out.println(words.toString());
 		System.out.println(words.distinctWords());

@@ -10,6 +10,7 @@ package lexer;
  * Visit http://www.pragmaticprogrammer.com/titles/tpdsl for more book information.
 ***/
 public class ExprLexer extends Lexer {
+	public static final int SQRT		= 10;
     public static final int INT 	 	= 2;
     public static final int PLUS 	 	= 3;
     public static final int MINUS  		= 4;
@@ -19,11 +20,11 @@ public class ExprLexer extends Lexer {
     public static final int POW 		= 8;
     public static final int NL   		= 9;
     public static String[] tokenNames =
-        { "n/a","<EOF>","INT","PLUS","MINUS","UMINUS", "MUL","DIV","POW","NL"};
+        { "n/a","<EOF>","INT","PLUS","MINUS","UMINUS", "MUL","DIV","POW","SQRT","NL"};
     public String getTokenName(int x) { return tokenNames[x]; }
 
     public ExprLexer(String input) { super(input); }
-    boolean isDIGIT()  { return c>='0'&&c<='9'; }
+    private boolean isDIGIT()  { return c>='0'&&c<='9'; }
 
     public Token nextToken() {
         while ( c!=EOF ) {
@@ -38,6 +39,7 @@ public class ExprLexer extends Lexer {
                 case '*' : consume(); return new Token(MUL, "*");
                 case '/' : consume(); return new Token(DIV, "/");
                 case '^' : consume(); return new Token(POW, "^");
+                case '~' : consume(); return new Token(SQRT,"~");
 
                 default:
                     if ( isDIGIT()  ) return INT();
