@@ -37,8 +37,10 @@ public class Auto {
 	public String toString() {
 		return "-------\nHersteller: "+this.hersteller+"\n"+"Preis: "+this.preis+"€\n"+
 		"Motor: "+this.leistung+"PS ("+this.kraftstoff+")\n"+"KM-Stand: "+this.laufleistung
-		+" km\n"+"Farbe: "+this.farbe+"\n"+(!this.unfallwagen?"unfallfrei":""+"------\n");
+		+" km\n"+"Farbe: "+this.farbe+"\n"+(!this.unfallwagen?"unfallfrei\n--------\n":"--------\n");
 		
 	}
+	
+	
 	
 }

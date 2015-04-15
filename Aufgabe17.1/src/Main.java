@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author Sven Marquardt
+ *
+ */
 public class Main {
 	public static void main(String[] args) {
 		Bestand bestand = new Bestand();
@@ -17,6 +21,6 @@ public class Main {
 		a = new Auto("Mercedes", 63000, 22999.99, "blue silver", true, "Elektro", 37.0);
 		a.zumBestandHinzu(bestand);
 		
-		for(Auto auto : bestand.sortiertNachPreis()) System.out.println(auto);
+		for(Auto auto : bestand.sortiertNachPreis()){ System.out.println(auto);}
 	}
 }
