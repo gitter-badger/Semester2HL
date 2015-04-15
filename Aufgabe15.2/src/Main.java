@@ -37,9 +37,9 @@ public class Main {
 			unsorted = false;
 			for (int i = 0; i < autos.length - 1; i++) {
 				if (!(autos[i].preis >= autos[i + 1].preis)) {
-					double dummy = autos[i].preis;
-					autos[i].preis = autos[i + 1].preis;
-					autos[i + 1].preis = dummy;
+					Auto dummy = autos[i];
+					autos[i] = autos[i+1]; 
+					autos[i + 1] = dummy;
 					unsorted = true;
 				}
 			}

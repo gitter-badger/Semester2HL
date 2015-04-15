@@ -153,7 +153,7 @@ public class Auto {
 				+ this.preis + "€\n" + "Motor: " + this.leistung + "PS ("
 				+ this.kraftstoff + ")\n" + "KM-Stand: " + this.laufleistung
 				+ " km\n" + "Farbe: " + this.farbe + "\n"
-				+ (!this.unfallwagen ? "unfallfrei" : "" + "------\n");
+				+ (!this.unfallwagen?"unfallfrei\n--------\n":"--------\n");
 
 	}
 
