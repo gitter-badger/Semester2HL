@@ -1,10 +1,11 @@
+import java.util.LinkedList;
+
 
 public class AllWords {
-	private static int allWords=0;
-	private Word words[];
+	private int allWords=0;
+	private LinkedList<Word> words = new LinkedList<Word>();
 	
-	public AllWords(int max) {
-		this.words= new Word[max];
+	public AllWords() {
 		allWords++;
 		
 	}
@@ -23,7 +24,7 @@ public class AllWords {
 			
 		}
 		if(!include){
-			words[counter] = new Word(s);
+			words.add(new Word(s));
 		}
 	}
 	
@@ -42,8 +43,8 @@ public class AllWords {
 	
 	public String toString() {
 		String allWordsbelongsToThis="";
-		for (Word word : words) {
-			allWordsbelongsToThis+=word.getContent()+" ";
+		while(!(words.isEmpty())){
+			allWordsbelongsToThis+= words.pop() + " ";
 		}
 		return allWordsbelongsToThis;
 	}
