@@ -16,7 +16,7 @@ public class Word implements Comparable<Word> {
 
 	@Override
 	public int compareTo(Word w) {
-		if(this.content.equalsIgnoreCase(w.content){
+		if(this.content.length()==w.content.length()){
 			return 0;
 		}else if(this.content.length()>w.content.length()){
 			return 1;

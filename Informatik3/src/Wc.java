@@ -13,6 +13,7 @@ public class Wc {
 		String string;
 		while((string=fs.readLine())!=null){
 			for (String s : string.split(" ")) {
+				
 				words.add(s);
 			}
 		}
@@ -20,5 +21,9 @@ public class Wc {
 		System.out.println(words.toString());
 		System.out.println(words.distinctWords());
 		System.out.println(words.totalWords());
+	}
+	
+	public static void  cutSpecial(String s){
+		
 	}
 }
