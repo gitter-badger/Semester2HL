@@ -28,5 +28,6 @@ public class Wc {
 		System.out.println(words.distinctWords());
 		System.out.println(words.totalWords());
 		System.out.println(words.mostUsed());
+		System.out.println(words.toString());
 	}
 }
