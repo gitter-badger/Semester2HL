@@ -15,7 +15,7 @@ public class Wc {
 		while((word=fs.readLine())!=null){
 			for (String s : word.split(" ")) {
 				for(String c :  s.split("")){
-					if(!(c.matches("[!?.:,()]"))){
+					if(!(c.matches("[!?.:,()-;'\"]"))){
 						letters+=c;
 					}
 				}
@@ -27,13 +27,6 @@ public class Wc {
 		System.out.println(words.toString());
 		System.out.println(words.distinctWords());
 		System.out.println(words.totalWords());
-	}
-	
-	public static String  cutSpecial(String s){
-		if(s.isEmpty()) return s;
-		if(s.length()<2) {
-			return s.substring(s.indexOf("[a-zA-Z]"));
-		}
-		return (String) s.subSequence(s.indexOf("[a-zA-Z]"), s.lastIndexOf("[a-zA-Z]"));
+		System.out.println(words.mostUsed());
 	}
 }

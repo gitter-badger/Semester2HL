@@ -50,6 +50,18 @@ public class AllWords {
 		return allWordsbelongsToThis;
 	}
 	
+	public Word mostUsed(){
+		Word find = new Word("");
+		for(Word w: words){
+			if(find.count()<w.count()){
+				find = w;
+						
+			}
+		}
+		
+		return words.get(words.indexOf(find));
+	}
+	
 	
 
 }
