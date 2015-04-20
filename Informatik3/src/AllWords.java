@@ -1,15 +1,25 @@
 import java.util.LinkedList;
 
+import javax.management.ListenerNotFoundException;
 
+/**
+ * 
+ * @author Sven Marquardt
+ *
+ */
 public class AllWords {
 	private LinkedList<Word> words = new LinkedList<Word>();
 	
-	public AllWords() {
-	}
 	
-
-	public void add(String s){
-		boolean include = false;
+	
+	/**
+	 * Fügt der Liste ein neues Wort hinzu wenn es nicht schon vorhanden ist. 
+	 * Groß und kleinschreibung wird missachtet 
+	 * @param s	Das neue Wort das hinzuzufügen ist 
+	 * @throws Exception 
+	 */
+	public void add(String s) {
+		boolean include = false;//Wenn false wort noch nicht vorhanden 
 		if(s.isEmpty()) return;
 		if(s.equals("")) return;
 		for(Word w : words){
@@ -26,11 +36,22 @@ public class AllWords {
 		}
 	}
 	
-	public int distinctWords() {
+	/**
+	 * Gibt die Anzahl der verschiedenen Wörter wieder was bei unserer Liste ja nur die groesse ist
+	 * @return	Die Anzahl der verschiedenen Woerter
+	 * @throws ListenerNotFoundException 
+	 */
+	public int distinctWords() throws NullPointerException{
+		if(words.isEmpty()) throw new NullPointerException("Liste ohne Inhalt!!");
 		return words.size()-1;
 	}
 	
-	public int totalWords() {
+	/**
+	 * Gibt die Anzahl aller Woerter also auch wenn eines zweimal vorkommt wieder
+	 * @return	DIe Anzahl aller Woerter
+	 */
+	public int totalWords() throws NullPointerException{
+		if(words.isEmpty()) throw new NullPointerException("Liste ohne Inhalt");
 		int allWords=0;
 		for(Word w : words){
 			allWords+=w.count();
@@ -38,7 +59,12 @@ public class AllWords {
 		return allWords;
 	}
 	
-	public String toString() {
+	/**
+	 * Gibt fuer jedes Wort in der Liste das Wort aus 
+	 * {@link #words.toString}
+	 */
+	public String toString() throws NullPointerException{
+		if(words.isEmpty()) throw new NullPointerException("Liste ohne Inhalt");
 		String allWordsbelongsToThis="";
 		for(Word w : words){
 			allWordsbelongsToThis += w.toString() +"\n";
@@ -46,11 +72,22 @@ public class AllWords {
 		return allWordsbelongsToThis;
 	}
 	
-	public Word mostUsed(){
+	/**
+	 * Gibt das am meisten genutzte Wort zurueck und sortiert dabei die Liste mittels Quicksort fuer vielleicht 
+	 * spaeter verwendungen
+	 * @return	Das am meisten genutzte Wort
+	 */
+	public Word mostUsed() throws NullPointerException{
+		if(words.isEmpty()) throw new NullPointerException("Liste ohne Inhalt");
 		sort(0,words.size()-1);
 		return words.get(words.size()-1);
 	}
 	
+	/**
+	 * Quicksort Methode
+	 * @param low	Anfang der Liste
+	 * @param high	Ende der Liste
+	 */
 	private  void sort(int low,int high){
 		int i=low;
 		int j=high;
@@ -78,6 +115,11 @@ public class AllWords {
 		
 	}
 	
+	/**
+	 * Tauscht zwei elemente in der Liste nur durch Quicksort aufrufen 
+	 * @param i	Erstes Listen element
+	 * @param j	Zweites Listen element
+	 */
 	private void swap(int i,int j){
 		Word tmp = words.get(i);
 		words.set(i, words.get(j));
