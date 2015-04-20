@@ -10,11 +10,17 @@ public class Wc {
 		AllWords words = new AllWords();
 		BufferedReader fs = new BufferedReader(new FileReader("Faust.txt"));
 		LinkedList<String> list = new LinkedList<String>();
-		String string;
-		while((string=fs.readLine())!=null){
-			for (String s : string.split(" ")) {
-				
-				words.add(s);
+		String word;
+		String letters="";
+		while((word=fs.readLine())!=null){
+			for (String s : word.split(" ")) {
+				for(String c :  s.split("")){
+					if(!(c.matches("[!?.:,()]"))){
+						letters+=c;
+					}
+				}
+				words.add(letters);
+				letters="";
 			}
 		}
 		
@@ -23,7 +29,11 @@ public class Wc {
 		System.out.println(words.totalWords());
 	}
 	
-	public static void  cutSpecial(String s){
-		
+	public static String  cutSpecial(String s){
+		if(s.isEmpty()) return s;
+		if(s.length()<2) {
+			return s.substring(s.indexOf("[a-zA-Z]"));
+		}
+		return (String) s.subSequence(s.indexOf("[a-zA-Z]"), s.lastIndexOf("[a-zA-Z]"));
 	}
 }

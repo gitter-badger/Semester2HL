@@ -10,6 +10,8 @@ public class AllWords {
 
 	public void add(String s){
 		boolean include = false;
+		if(s.isEmpty()) return;
+		if(s.equals("")) return;
 		for(Word w : words){
 			if (w!=null) {
 				if (w.getContent().equalsIgnoreCase(s)) {
