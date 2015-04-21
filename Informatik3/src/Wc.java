@@ -9,8 +9,8 @@ public class Wc {
 	public static void main(String[] args) throws IOException {
 		AllWords words = new AllWords();
 		BufferedReader fs = new BufferedReader(new FileReader("Faust.txt"));
-		String word;
-		String letters="";
+		String word;//Einzelne wörter
+		String letters="";//Einzelnes Wort
 		while((word=fs.readLine())!=null){
 			for (String s : word.split(" ")) {
 				//Einzelne charavters abfangen
