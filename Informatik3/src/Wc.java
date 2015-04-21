@@ -10,28 +10,9 @@ public class Wc {
 		AllWords words = new AllWords();
 		BufferedReader fs = new BufferedReader(new FileReader("Faust.txt"));
 		String word;//Einzelne wörter
-		String letters="";//Einzelnes Wort
 		while((word=fs.readLine())!=null){
 			for (String s : word.split(" ")) {
-				//Einzelne charavters abfangen
-				for(String c :  s.split("")){
-					//Überprüfen auf sonerzeichen 
-					try {
-						if(!(c.matches("[!?.:,()-;'\"]"))){
-							letters+=c;
-						}
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				try {
-					words.add(letters);
-				} catch (Exception e) {
-					System.out.println(e.getLocalizedMessage());
-					System.out.println(e.getMessage());
-				}
-				letters="";
+				words.add(s);
 			}
 		}
 		

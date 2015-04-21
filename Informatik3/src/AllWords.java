@@ -22,9 +22,10 @@ public class AllWords {
 		boolean include = false;//Wenn false wort noch nicht vorhanden 
 		if(s.isEmpty()) return;
 		if(s.equals("")) return;
+		String string = cutSpecial(s);
 		for(Word w : words){
 			if (w!=null) {
-				if (w.getContent().equals(s)) {
+				if (w.getContent().equals(string)) {
 					w.inc();
 					include = true;
 				}
@@ -32,7 +33,7 @@ public class AllWords {
 			
 		}
 		if(!include){
-			words.add(new Word(s));
+			words.add(new Word(string));
 		}
 	}
 	
@@ -43,7 +44,7 @@ public class AllWords {
 	 */
 	public int distinctWords() throws NullPointerException{
 		if(words.isEmpty()) throw new NullPointerException("Liste ohne Inhalt!!");
-		return words.size()-1;
+		return words.size();
 	}
 	
 	/**
@@ -124,6 +125,16 @@ public class AllWords {
 		Word tmp = words.get(i);
 		words.set(i, words.get(j));
 		words.set(j, tmp);
+	}
+	
+	private String cutSpecial(String word) {
+		String string="";
+		for (String s : word.split("")) {
+			if(!(s.matches("[!?().,:-]"))&&!(s.matches("[\"';&{}]"))){
+				string+=s;
+			}
+		}
+		return string;
 	}
 	
 	

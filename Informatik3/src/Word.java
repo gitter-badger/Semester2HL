@@ -31,8 +31,11 @@ public class Word implements Comparable<Word> {
 	public void inc(){ this.n++;}
 	
 
+	
 	public int compareTo(Word w) throws ClassCastException {
-		if(w==null) throw new ClassCastException();
+		if(w==null) throw new ClassCastException("Kein Wort zum vergleichen");
+		if(this.content.isEmpty()) throw new ClassCastException("Kein Inhalt im Wort");
+		if(w.content.isEmpty()) throw new ClassCastException("Kein Inhalt im Wort");
 		if(this.content.length()==w.content.length()){
 			return 0;
 		}else if(this.content.length()>w.content.length()){
