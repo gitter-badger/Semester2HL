@@ -2,7 +2,7 @@ package LinkedList;
 
 import java.util.Iterator;
 
-public class LinkedList<E> implements List<E> {
+public class LinkedList<E extends Comparable<E>> implements List<E> {
 	private Zelle<E> anker;
 	private Cursor cursor;
 	
@@ -32,12 +32,16 @@ public class LinkedList<E> implements List<E> {
 
 	
 	public boolean add(E e) {
-		// TODO Auto-generated method stub
-		return false;
+		cursor.add(e);
+		return true;
 	}
 
 	public boolean remove(E e) {
-		return true;
+		if(cursor.atEnd()) return true;
+		else{
+			cursor.remove();
+			return true;
+		}
 	}
 
 	
@@ -52,14 +56,17 @@ public class LinkedList<E> implements List<E> {
 		return null;
 	}
 
-	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<E> iterator(){
+		return new Cursor(anker);
 	}
 
 	public E get() {
-		// TODO Auto-generated method stub
-		return null;
+		if(cursor.atEnd()){
+			return null;
+		}
+		else{
+			return cursor.get();
+		}
 	}
 
 	
@@ -70,26 +77,29 @@ public class LinkedList<E> implements List<E> {
 
 	
 	public void goToFirst() {
-		// TODO Auto-generated method stub
+		cursor.goToFirst();
 		
 	}
 
 	
 	public void goToNext() {
-		// TODO Auto-generated method stub
+		cursor.goToNext();
 		
+	}
+	
+	public void goTo(E e){
+		cursor.goTo(e);
 	}
 
 	
 	public boolean atEnd() {
-		// TODO Auto-generated method stub
-		return false;
+		return cursor.atEnd();
 	}
 	
-	private class Cursor{
+	private class Cursor implements Iterator<E>{
 		private Zelle<E> z;
 		
-		public Cursor(Zelle<E>z){
+		private Cursor(Zelle<E>z){
 			this.z=z;
 		}
 		
@@ -99,28 +109,49 @@ public class LinkedList<E> implements List<E> {
 			}
 		}
 		
-		public void add(E e){
+		private void add(E e){
 			z.next = new Zelle<E>(e, z.next);
 			goToNext();
 		}
 		
-		public E get(){
+		private E get(){
 			return z.next.inhalt;
 		}
 		
-		public void goToFirst(){
+		private void goToFirst(){
 			z= anker;
 		}
 		
-		public void goToNext(){
+		private void goToNext(){
 			if(!atEnd()){
 				z=z.next;
 			}
 		}
 		
-		public boolean atEnd(){
+		private boolean atEnd(){
 			return z.next==null;
 		}
+		
+		private void goTo(E e){
+			goToFirst();
+			while(!atEnd() && e.compareTo(get()!=0)){
+				goToNext();
+			}
+		}
+
+		@Override
+		public boolean hasNext() {
+			return atEnd();
+		}
+
+		@Override
+		public E next() {
+			E e = get();
+			goToNext();
+			return E;
+		}
+		
+		
 		
 		
 	}
