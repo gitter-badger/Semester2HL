@@ -134,7 +134,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		
 		private void goTo(E e){
 			goToFirst();
-			while(!atEnd() && e.compareTo(get()!=0)){
+			while(!atEnd() && e.compareTo(get())!=0){
 				goToNext();
 			}
 		}
@@ -148,7 +148,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		public E next() {
 			E e = get();
 			goToNext();
-			return E;
+			return e;
 		}
 		
 		
