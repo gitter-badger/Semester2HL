@@ -1,30 +1,31 @@
 package LinkedList;
 
+
 import java.util.Iterator;
 
-public class LinkedList<E extends Comparable<E>> implements List<E> {
+public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
+
+	private int size;
 	private Zelle<E> anker;
 	private Cursor cursor;
-	private int size;
 	
-	
-	public LinkedList() {
-		anker= new Zelle<E>(null, null);
-		cursor = new Cursor(anker);
+	public LinkedListSet() {
+		anker = new Zelle<E>(null,null);
 		size=0;
+		cursor = new Cursor(anker);
 	}
 	
-	
+	@Override
 	public int size() {
 		return size;
 	}
 
-	
+	@Override
 	public boolean isEmpty() {
 		return size==0;
 	}
 
-	
+	@Override
 	public boolean contains(E e) {
 		E save = cursor.get();
 		cursor.goToFirst();
@@ -36,18 +37,21 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		}
 		cursor.goTo(save);
 		return false;
-		
 	}
 
-	
+	@Override
 	public boolean add(E e) {
+		if(this.contains(e)) return false;
+		else {
 		cursor.add(e);
 		size+=1;
 		return true;
+		}
 	}
 
+	@Override
 	public boolean remove(E e) {
-		if(cursor.atEnd()) return true;
+		if(cursor.atEnd()) return false;
 		else{
 			cursor.remove();
 			size-=1;
@@ -55,7 +59,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		}
 	}
 
-	
+	@Override
 	public void clear() {
 		cursor.goToFirst();
 		cursor.z.next=null;
@@ -63,49 +67,44 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		
 	}
 
-	
+	@Override
 	public E getMatch(E e) {
-		if(!contains(e)) return null;
+		if(!this.contains(e)) return null;
 		else return e;
 	}
 
-	public Iterator<E> iterator(){
+	@Override
+	public Iterator<E> iterator() {
 		return new Cursor(anker);
 	}
 
+	@Override
 	public E get() {
-		if(cursor.atEnd()){
-			return null;
-		}
+		if(cursor.atEnd()) return null;
 		else{
 			return cursor.get();
 		}
 	}
 
-	
+	@Override
 	public void goToFirst() {
 		cursor.goToFirst();
 		
 	}
 
-	
+	@Override
 	public void goToNext() {
 		cursor.goToNext();
 		
 	}
-	
-	public void goTo(E e){
-		cursor.goTo(e);
-	}
 
-	
+	@Override
 	public boolean atEnd() {
 		return cursor.atEnd();
 	}
 	
-		private class Cursor implements Iterator<E>{
-		
-			private Zelle<E> z;
+	private class Cursor implements Iterator<E>{
+		private Zelle<E> z;
 		private Cursor(Zelle<E>z){
 			this.z=z;
 		}
@@ -156,11 +155,16 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 			goToNext();
 			return e;
 		}
+
 		
-		
-		
+
 		
 	}
+
+	
+
+
+	
 	
 
 }
