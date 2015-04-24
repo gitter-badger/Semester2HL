@@ -5,34 +5,44 @@ import java.util.Iterator;
 public class LinkedList<E extends Comparable<E>> implements List<E> {
 	private Zelle<E> anker;
 	private Cursor cursor;
+	private int size;
 	
 	
 	public LinkedList() {
 		anker= new Zelle<E>(null, null);
-		cursor= new Cursor(anker);
+		cursor = new Cursor(anker);
+		size=0;
 	}
 	
 	
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return anker.next==null;
 	}
 
 	
 	public boolean contains(E e) {
-		// TODO Auto-generated method stub
+		E save = cursor.get();
+		cursor.goToFirst();
+		while(!cursor.atEnd()){
+			if(cursor.next().compareTo(e)==0){
+				cursor.goTo(save);
+				return true;
+			}
+		}
+		cursor.goTo(save);
 		return false;
+		
 	}
 
 	
 	public boolean add(E e) {
 		cursor.add(e);
+		size+=1;
 		return true;
 	}
 
@@ -40,20 +50,23 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		if(cursor.atEnd()) return true;
 		else{
 			cursor.remove();
+			size-=1;
 			return true;
 		}
 	}
 
 	
 	public void clear() {
-		// TODO Auto-generated method stub
+		cursor.goToFirst();
+		anker.next=null;
+		size=0;
 		
 	}
 
 	
 	public E getMatch(E e) {
-		// TODO Auto-generated method stub
-		return null;
+		if(!contains(e)) return null;
+		else return e;
 	}
 
 	public Iterator<E> iterator(){
@@ -67,12 +80,6 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		else{
 			return cursor.get();
 		}
-	}
-
-	
-	public boolean remove() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	
@@ -96,9 +103,9 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		return cursor.atEnd();
 	}
 	
-	private class Cursor implements Iterator<E>{
-		private Zelle<E> z;
+		private class Cursor implements Iterator<E>{
 		
+			private Zelle<E> z;
 		private Cursor(Zelle<E>z){
 			this.z=z;
 		}
@@ -139,12 +146,11 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 			}
 		}
 
-		@Override
 		public boolean hasNext() {
 			return atEnd();
 		}
 
-		@Override
+		
 		public E next() {
 			E e = get();
 			goToNext();
