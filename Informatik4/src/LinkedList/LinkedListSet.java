@@ -15,6 +15,10 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
 		cursor = new Cursor(anker);
 	}
 	
+	public void goTo(E e){
+		cursor.goTo(e);
+	}
+	
 	@Override
 	public int size() {
 		return size;
@@ -27,17 +31,18 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
 
 	@Override
 	public boolean contains(E e) {
-		E save = cursor.get();
-		cursor.goToFirst();
-		while(!cursor.atEnd()){
-			if(cursor.next().compareTo(e)==0){
-				cursor.goTo(save);
+		Cursor cursor1=new Cursor(anker);
+		cursor1.goToFirst();
+		while(!cursor1.atEnd()){
+			if(cursor1.get().compareTo(e)==0){
 				return true;
 			}
+			cursor1.goToNext();
 		}
-		cursor.goTo(save);
 		return false;
 	}
+	
+	
 
 	@Override
 	public boolean add(E e) {
@@ -58,6 +63,7 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
 			return true;
 		}
 	}
+	
 
 	@Override
 	public void clear() {
@@ -120,6 +126,8 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
 			goToNext();
 		}
 		
+		
+		
 		private E get(){
 			return z.next.inhalt;
 		}
@@ -146,7 +154,7 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
 		}
 
 		public boolean hasNext() {
-			return atEnd();
+			return !atEnd();
 		}
 
 		
@@ -155,6 +163,7 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
 			goToNext();
 			return e;
 		}
+		
 
 		
 

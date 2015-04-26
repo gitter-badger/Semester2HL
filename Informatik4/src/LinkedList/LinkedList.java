@@ -116,6 +116,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 			}
 		}
 		
+		
 		private void add(E e){
 			z.next = new Zelle<E>(e, z.next);
 			goToNext();
@@ -147,7 +148,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		}
 
 		public boolean hasNext() {
-			return atEnd();
+			return !atEnd();
 		}
 
 		
