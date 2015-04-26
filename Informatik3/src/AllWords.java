@@ -20,20 +20,17 @@ public class AllWords {
 	 */
 	public void add(String s) {
 		boolean include = false;//Wenn false wort noch nicht vorhanden 
-		if(s.isEmpty()) return;
-		if(s.equals("")) return;
 		String string = cutSpecial(s);
+		Word x = new Word(string);
 		for(Word w : words){
-			if (w!=null) {
-				if (w.getContent().equals(string)) {
+				if (w.compareTo(x)==0) {
 					w.inc();
 					include = true;
 				}
-			}
 			
 		}
 		if(!include){
-			words.add(new Word(string));
+			words.add(x);
 		}
 	}
 	
@@ -78,8 +75,8 @@ public class AllWords {
 	 * spaeter verwendungen
 	 * @return	Das am meisten genutzte Wort
 	 */
-	public Word mostUsed() throws NullPointerException{
-		if(words.isEmpty()) throw new NullPointerException("Liste ohne Inhalt");
+	public Word mostUsed() {
+		if(words.isEmpty()) System.out.println("Liste ohne Inhalt");
 		sort(0,words.size()-1);
 		return words.get(words.size()-1);
 	}

@@ -14,7 +14,7 @@ public class Wc {
 			words.add(scanner.next());
 		}
 		
-		System.out.println(words.toString());//Liefert alle woerter mit Anzahl
+		System.out.println(words);//Liefert alle woerter mit Anzahl
 		System.out.println(words.distinctWords());//Liefert Anzahl der verschiedenen Woerter 
 		System.out.println(words.totalWords());//Liefert Anzahl aller Woerter
 		System.out.println(words.mostUsed());//Liefert das meist genutzte Wort 
