@@ -9,19 +9,19 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 	
 	
 	public LinkedList() {
-		anker= new Zelle<E>(null, null);
-		cursor = new Cursor(anker);
-		size=0;
+		this.anker= new Zelle<E>(null, null);
+		this.cursor = new Cursor(anker);
+		this.size=0;
 	}
 	
 	
 	public int size() {
-		return size;
+		return this.size;
 	}
 
 	
 	public boolean isEmpty() {
-		return anker.next==null;
+		return this.anker.next==null;
 	}
 
 	
@@ -40,26 +40,26 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 
 	
 	public boolean add(E e) {
-		cursor.add(e);
-		size+=1;
+		this.cursor.add(e);
+		this.size+=1;
 		return true;
 	}
 
 	public boolean remove(E e) {
-		if(cursor.atEnd()) return true;
-		else{
-			
-			cursor.remove();
-			size-=1;
+		if(this.isEmpty()) return false;
+		if(this.contains(e)){
+			this.goTo(e);
+			this.cursor.remove();
 			return true;
 		}
+		return false;
 	}
 
 	
 	public void clear() {
-		cursor.goToFirst();
-		cursor.z.next=null;
-		size=0;
+		this.cursor.goToFirst();
+		this.cursor.z.next=null;
+		this.size=0;
 		
 	}
 
@@ -74,33 +74,33 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 	}
 
 	public E get() {
-		if(cursor.atEnd()){
+		if(this.cursor.atEnd()){
 			return null;
 		}
 		else{
-			return cursor.get();
+			return this.cursor.get();
 		}
 	}
 
 	
 	public void goToFirst() {
-		cursor.goToFirst();
+		this.cursor.goToFirst();
 		
 	}
 
 	
 	public void goToNext() {
-		cursor.goToNext();
+		this.cursor.goToNext();
 		
 	}
 	
 	public void goTo(E e){
-		cursor.goTo(e);
+		this.cursor.goTo(e);
 	}
 
 	
 	public boolean atEnd() {
-		return cursor.atEnd();
+		return this.cursor.atEnd();
 	}
 	
 	public String toString() {
@@ -124,50 +124,50 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		}
 		
 		public void remove(){
-			if(!atEnd()){
-				z.next=z.next.next;
+			if(!this.atEnd()){
+				this.z.next=this.z.next.next;
 			}
 		}
 		
 		
 		private void add(E e){
-			z.next = new Zelle<E>(e, z.next);
-			goToNext();
+			this.z.next = new Zelle<E>(e, this.z.next);
+			this.goToNext();
 		}
 		
 		private E get(){
-			return z.next.inhalt;
+			return this.z.next.inhalt;
 		}
 		
 		private void goToFirst(){
-			z= anker;
+			this.z= anker;
 		}
 		
 		private void goToNext(){
-			if(!atEnd()){
-				z=z.next;
+			if(!this.atEnd()){
+				this.z=this.z.next;
 			}
 		}
 		
 		private boolean atEnd(){
-			return z.next==null;
+			return this.z.next==null;
 		}
 		
 		private void goTo(E e){
-			goToFirst();
-			while(!atEnd() && e.compareTo(get())!=0){
-				goToNext();
+			this.goToFirst();
+			while(!this.atEnd() && e.compareTo(this.get())!=0){
+				this.goToNext();
 			}
 		}
 
 		public boolean hasNext() {
-			return !atEnd();
+			return !this.atEnd();
 		}
 
 		
 		public E next() {
-			E e = get();
-			goToNext();
+			E e = this.get();
+			this.goToNext();
 			return e;
 		}
 		
