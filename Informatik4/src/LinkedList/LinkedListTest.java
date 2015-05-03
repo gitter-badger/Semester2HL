@@ -10,17 +10,21 @@ import org.junit.Test;
 public class LinkedListTest {
 
 	@Test
-	public void test() {
+	public void testInput() {
 		LinkedList<String> list = new LinkedList<String>();
-		list.add("Hallo");
-		list.add("hallo");
-		System.out.println(list.get());
-		Iterator<String> li = list.iterator();
-		while(li.hasNext()){
-			System.out.println(li.next());
-		}
+		assertTrue(list.add("Hallo"));
+		assertThat(true, is(equalTo(list.add("Hallo"))));//Gleiches Element funktioniert 
+		assertTrue(list.contains("Hallo"));
+		assertThat(false, is(equalTo(list.contains("hallo"))));
+		assertThat(null, is(equalTo(list.get())));
 		list.goTo("Hallo");
-		assertThat("Hallo",is(equalTo(list.get())));
+		assertThat("Hallo", is(equalTo(list.get())));
+		assertTrue(list.remove("Hallo"));//Entfernen 
+		assertTrue(list.contains("Hallo"));
+		assertTrue(list.remove("Hallo"));
+		System.out.println(list);
+		
+		
 		
 		
 	}

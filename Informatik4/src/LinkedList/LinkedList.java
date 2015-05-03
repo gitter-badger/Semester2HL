@@ -26,15 +26,14 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 
 	
 	public boolean contains(E e) {
-		E save = cursor.get();
-		cursor.goToFirst();
-		while(!cursor.atEnd()){
-			if(cursor.next().compareTo(e)==0){
-				cursor.goTo(save);
+		Cursor cursor1=new Cursor(anker);
+		cursor1.goToFirst();
+		while(!cursor1.atEnd()){
+			if(cursor1.get().compareTo(e)==0){
 				return true;
 			}
+			cursor1.goToNext();
 		}
-		cursor.goTo(save);
 		return false;
 		
 	}
@@ -101,6 +100,20 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 	
 	public boolean atEnd() {
 		return cursor.atEnd();
+	}
+	
+	public String toString() {
+		String string="";
+		int count=0;
+		Cursor cursor = new Cursor(anker);
+		while(!cursor.atEnd()){
+			string+=""+count+":"+cursor.get()+"\n";
+			cursor.goToNext();
+			count++;
+		}
+		
+		return string;
+		
 	}
 	
 		private class Cursor implements Iterator<E>{

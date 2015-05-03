@@ -109,6 +109,22 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E>{
 		return cursor.atEnd();
 	}
 	
+	public String toString() {
+		String string="";
+		int count=0;
+		Cursor cursor = new Cursor(anker);
+		while(!cursor.atEnd()){
+			string+=""+count+":"+cursor.get()+"\n";
+			cursor.goToNext();
+			count++;
+		}
+		
+		return string;
+		
+	}
+	
+	
+	
 	private class Cursor implements Iterator<E>{
 		private Zelle<E> z;
 		private Cursor(Zelle<E>z){

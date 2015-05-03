@@ -13,10 +13,12 @@ public class LinkedListSetTest {
 
 	@Test
 	public void test() {
-		LinkedListSet<String> list = new LinkedListSet<String>();
+		LinkedListSet<Integer> list = new LinkedListSet<Integer>();
 		assertThat(null,is(equalTo(list.get())));
-		assertTrue(list.add("Java"));
-		
+		assertTrue(list.add(7));
+		assertTrue(list.add(8));
+		assertThat(false, is(equalTo(list.add(7))));
+		assertTrue(list.contains(7));
 		
 		
 	}
