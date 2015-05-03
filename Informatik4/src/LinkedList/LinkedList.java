@@ -21,7 +21,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 
 	
 	public boolean isEmpty() {
-		return size==0;
+		return anker.next==null;
 	}
 
 	
@@ -48,6 +48,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 	public boolean remove(E e) {
 		if(cursor.atEnd()) return true;
 		else{
+			
 			cursor.remove();
 			size-=1;
 			return true;
@@ -113,7 +114,6 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		}
 		
 		return string;
-		
 	}
 	
 		private class Cursor implements Iterator<E>{
