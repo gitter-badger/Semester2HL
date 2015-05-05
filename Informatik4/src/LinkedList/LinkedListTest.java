@@ -9,25 +9,16 @@ import org.junit.Test;
 
 public class LinkedListTest {
 
+	/**
+	 * Testet input der Liste 
+	 */
 	@Test
 	public void testInput() {
 		LinkedList<String> list = new LinkedList<String>();
 		assertTrue(list.add("Hallo"));
 		assertThat(true, is(equalTo(list.add("Hallo"))));//Gleiches Element funktioniert 
 		assertTrue(list.contains("Hallo"));
-		assertThat(false, is(equalTo(list.contains("hallo"))));
-		assertThat(null, is(equalTo(list.get())));
-		list.goTo("Hallo");
-		assertThat("Hallo", is(equalTo(list.get())));
-		System.out.println(list);
-		list.goToFirst();
-		assertTrue(list.add("Welt"));
-		System.out.println(list);
-		list.goToNext();
-		assertTrue(list.add("Welt"));
-		assertThat("Hallo", is(equalTo(list.get())));
-		System.out.println(list);
-		assertTrue(list.remove("Hallo"));//Entfernen
+		assertThat(null, is(equalTo(list.getMatch("hallo"))));
 	}
 	
 	
@@ -42,21 +33,30 @@ public class LinkedListTest {
 		assertThat(false, is(equalTo(list.isEmpty())));
 		assertTrue(list.remove("1"));
 		assertTrue(list.isEmpty());
+		list.add("1");
+		list.add("3");
+		list.goToFirst();
+		assertTrue(list.remove());
 	}
 	
 	/**
 	 * Teste die size Mehtode
 	 */
+	@Test
 	public void testSize() {
 		LinkedList<String> list = new LinkedList<String>();
 		list.add("1");
 		assertThat(1, is(equalTo(list.size())));
 		list.clear();
 		assertThat(0, is(equalTo(list.size())));
+		assertTrue(list.add("1"));
+		assertThat(1, is(equalTo(list.size())));
 	}
 	
 	
-	
+	/**
+	 * Teste den Iterator
+	 */
 	@Test
 	public void testIterator() {
 		LinkedList<Integer> list  = new LinkedList<Integer>();
@@ -69,6 +69,17 @@ public class LinkedListTest {
 		}
 		System.out.println(list);
 		
+	}
+	
+	/**
+	 * Teste Match 
+	 */
+	@Test
+	public void testMatch() {
+		LinkedList<String> list = new LinkedList<String>();
+		list.add("String");
+		assertThat("String", is(equalTo(list.getMatch("String"))));
+		assertThat(null, is(equalTo(list.getMatch("hallo"))));
 	}
 
 }
