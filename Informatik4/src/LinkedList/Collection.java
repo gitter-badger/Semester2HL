@@ -30,6 +30,11 @@ public interface Collection<E> extends Iterable<E> {
 	 */
 	boolean remove(E e);
 	/**
+	 * Löscht das Element auf dem der Cursor gerade steht 
+	 * @return true wenn es was zu löschen gab ansonsten false
+	 */
+	boolean remove();
+	/**
 	 *	Löscht alle Objekte aus der Liste 
 	 */
 	void clear();
