@@ -1,4 +1,4 @@
-package LinkedList;
+package LinkedListSet;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -9,13 +9,18 @@ import org.junit.Test;
 
 public class LinkedListSetTest {
 
+	/**
+	 * Teste input
+	 */
 	@Test
 	public void testInput() {
 		LinkedListSet<String> list = new LinkedListSet<String>();
 		assertTrue(list.add("Hallo"));
-		assertThat(false, is(equalTo(list.add("Hallo"))));//Gleiche lemente nciht in einer Menge
+		assertThat(false, is(equalTo(list.add("Hallo"))));//Gleiche elemente nicht in einer Menge
 		list.goToFirst();
 		assertTrue(list.add("Welt"));
+		list.goTo("Hallo");
+		assertThat("Hallo", is(equalTo(list.get())));
 	}
 	
 	
@@ -30,7 +35,14 @@ public class LinkedListSetTest {
 		assertThat(false, is(equalTo(list.isEmpty())));
 		assertTrue(list.remove("1"));
 		assertTrue(list.isEmpty());
+		assertTrue(list.add("1"));
+		list.goToFirst();
+		assertTrue(list.remove());
+		assertTrue(list.isEmpty());
+		assertThat(false, is(equalTo(list.remove())));
+		assertThat(false, is(equalTo(list.remove("1"))));
 	}
+	
 	
 	/**
 	 * Teste die size Mehtode

@@ -1,6 +1,9 @@
-package LinkedList;
+package LinkedListSet;
 
 import java.util.Iterator;
+
+import LinkedList.List;
+import LinkedList.Zelle;
 
 public class LinkedListSet<E extends Comparable<E>> implements List<E> {
 	private Zelle<E> anker;
@@ -13,6 +16,7 @@ public class LinkedListSet<E extends Comparable<E>> implements List<E> {
 		this.cursor = new Cursor(anker);
 		this.size=0;
 	}
+	
 	
 	
 	public int size() {
@@ -44,6 +48,14 @@ public class LinkedListSet<E extends Comparable<E>> implements List<E> {
 		else{
 			this.cursor.add(e);
 			this.size+=1;
+			return true;
+		}
+	}
+	
+	public boolean remove(){
+		if(this.atEnd()) return false;
+		else{
+			this.cursor.remove();
 			return true;
 		}
 	}

@@ -17,8 +17,12 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedList<String>();
 		assertTrue(list.add("Hallo"));
 		assertThat(true, is(equalTo(list.add("Hallo"))));//Gleiches Element funktioniert 
-		assertTrue(list.contains("Hallo"));
-		assertThat(null, is(equalTo(list.getMatch("hallo"))));
+		list.add("Welt");
+		list.goTo("Hallo");
+		assertThat("Hallo", is(equalTo(list.get())));
+		System.out.println(list);
+		list.goToNext();
+		assertTrue(list.add("Neu"));
 	}
 	
 	
@@ -33,11 +37,12 @@ public class LinkedListTest {
 		assertThat(false, is(equalTo(list.isEmpty())));
 		assertTrue(list.remove("1"));
 		assertTrue(list.isEmpty());
-		list.add("1");
 		list.add("3");
 		list.goToFirst();
 		assertTrue(list.remove());
+		assertThat(false, is(equalTo(list.remove("3"))));
 	}
+	
 	
 	/**
 	 * Teste die size Mehtode
