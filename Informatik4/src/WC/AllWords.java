@@ -22,8 +22,7 @@ public class AllWords {
 		s=cutSpecial(s);
 		Word wort = new Word(s);
 		if(!words.add(wort)){
-			words.goTo(wort);
-			words.get().inc();
+			words.getMatch(wort).inc();
 		}
 		this.allWords++;
 	}

@@ -18,7 +18,7 @@ public class LinkedListTest {
 		assertTrue(list.add("Hallo"));
 		assertThat(true, is(equalTo(list.add("Hallo"))));//Gleiches Element funktioniert 
 		list.add("Welt");
-		list.goTo("Hallo");
+		list.goToFirst();
 		assertThat("Hallo", is(equalTo(list.get())));
 		System.out.println(list);
 		list.goToNext();

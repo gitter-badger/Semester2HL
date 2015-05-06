@@ -53,7 +53,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 		if (this.isEmpty())
 			return false;
 		if (this.contains(e)) {
-			this.goTo(e);
+			this.cursor.goTo(e);
 			this.cursor.remove();
 			return true;
 		}
@@ -62,7 +62,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 
 	public void clear() {
 		this.cursor.goToFirst();
-		this.cursor.z.next = null;
+		this.anker.next=null;
 		this.size = 0;
 
 	}
@@ -96,9 +96,6 @@ public class LinkedList<E extends Comparable<E>> implements List<E> {
 
 	}
 
-	public void goTo(E e) {
-		this.cursor.goTo(e);
-	}
 
 	public boolean atEnd() {
 		return this.cursor.atEnd();

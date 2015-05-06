@@ -1,195 +1,72 @@
 package LinkedListSet;
 
+
+
 import java.util.Iterator;
 
-import LinkedList.List;
-import LinkedList.Zelle;
+import LinkedList.LinkedList;
 
-public class LinkedListSet<E extends Comparable<E>> implements List<E> {
-	private Zelle<E> anker;
-	private Cursor cursor;
-	private int size;
-	
+
+@SuppressWarnings("")
+public class LinkedListSet<E extends Comparable<E>> implements Set<E> {
+	private LinkedList<E> list;
 	
 	public LinkedListSet() {
-		this.anker= new Zelle<E>(null, null);
-		this.cursor = new Cursor(anker);
-		this.size=0;
+		list = new LinkedList<E>();
 	}
-	
-	
-	
+
+	@Override
 	public int size() {
-		return this.size;
+		return list.size();
 	}
 
-	
+	@Override
 	public boolean isEmpty() {
-		return this.anker.next==null;
+		return list.isEmpty();
 	}
 
-	
+	@Override
 	public boolean contains(E e) {
-		Cursor cursor1=new Cursor(anker);
-		cursor1.goToFirst();
-		while(!cursor1.atEnd()){
-			if(cursor1.get().compareTo(e)==0){
-				return true;
-			}
-			cursor1.goToNext();
-		}
-		return false;
-		
+		return list.contains(e);
 	}
 
 	
+	@Override
 	public boolean add(E e) {
-		if(this.contains(e)) return false;
+		if((this.list.contains(e))) return false;
 		else{
-			this.cursor.add(e);
-			this.size+=1;
-			return true;
-		}
-	}
-	
-	public boolean remove(){
-		if(this.atEnd()) return false;
-		else{
-			this.cursor.remove();
+			list.add(e);
 			return true;
 		}
 	}
 
+	@Override
 	public boolean remove(E e) {
-		if(this.isEmpty()) return false;
-		if(this.contains(e)){
-			this.goTo(e);
-			this.cursor.remove();
-			return true;
-		}
-		return false;
+		return list.remove(e);
 	}
 
-	
+	@Override
+	public boolean remove() {
+		return list.remove();
+	}
+
+	@Override
 	public void clear() {
-		this.cursor.goToFirst();
-		this.cursor.z.next=null;
-		this.size=0;
+		list.clear();
 		
 	}
 
-	
+	@Override
 	public E getMatch(E e) {
-		if(!contains(e)) return null;
-		else return e;
+		return (E) list.getMatch(e);
 	}
 
-	public Iterator<E> iterator(){
-		return new Cursor(anker);
-	}
-
-	public E get() {
-		if(this.cursor.atEnd()){
-			return null;
-		}
-		else{
-			return this.cursor.get();
-		}
-	}
-
-	
-	public void goToFirst() {
-		this.cursor.goToFirst();
-		
-	}
-
-	
-	public void goToNext() {
-		this.cursor.goToNext();
-		
+	@Override
+	public Iterator<E> iterator() {
+		return list.iterator();
 	}
 	
-	public void goTo(E e){
-		this.cursor.goTo(e);
-	}
-
 	
-	public boolean atEnd() {
-		return this.cursor.atEnd();
-	}
-	
-	public String toString() {
-		String string="";
-		int count=0;
-		Cursor cursor = new Cursor(anker);
-		while(!cursor.atEnd()){
-			string+=""+count+":"+cursor.get()+"\n";
-			cursor.goToNext();
-			count++;
-		}
-		
-		return string;
-	}
-	
-		private class Cursor implements Iterator<E>{
-		
-			private Zelle<E> z;
-		private Cursor(Zelle<E>z){
-			this.z=z;
-		}
-		
-		public void remove(){
-			if(!this.atEnd()){
-				this.z.next=this.z.next.next;
-			}
-		}
-		
-		
-		private void add(E e){
-			this.z.next = new Zelle<E>(e, this.z.next);
-			this.goToNext();
-		}
-		
-		private E get(){
-			return this.z.next.inhalt;
-		}
-		
-		private void goToFirst(){
-			this.z= anker;
-		}
-		
-		private void goToNext(){
-			if(!this.atEnd()){
-				this.z=this.z.next;
-			}
-		}
-		
-		private boolean atEnd(){
-			return this.z.next==null;
-		}
-		
-		private void goTo(E e){
-			this.goToFirst();
-			while(!this.atEnd() && e.compareTo(this.get())!=0){
-				this.goToNext();
-			}
-		}
-
-		public boolean hasNext() {
-			return !this.atEnd();
-		}
-
-		
-		public E next() {
-			E e = this.get();
-			this.goToNext();
-			return e;
-		}
-		
-		
-		
-		
-	}
 	
 
 }
