@@ -33,7 +33,7 @@ public class LinkedListSet<E extends Comparable<E>> implements Set<E> {
 	
 	@Override
 	public boolean add(E e) {
-		if((this.list.contains(e))) return false;
+		if(this.list.contains(e)) return false;
 		else{
 			list.add(e);
 			return true;
